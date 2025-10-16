@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userType:{
+      type: String,
+      enum: ["user", "foodPartner"],
+      required: true,
+      default: "user"
+    },
   },
   { timestamps: true }
 );
