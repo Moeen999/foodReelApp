@@ -5,9 +5,10 @@ const authMiddleware = require("../middlewares/auth.middleware.js");
 const multer = require("multer");
 
 const uploadFile = multer({
-  storage:multer.memoryStorage()
-})
+  storage: multer.memoryStorage(),
+});
 
+//protected route
 router.post(
   "/",
   authMiddleware.authFoodPartenerMiddleware,
@@ -15,4 +16,5 @@ router.post(
   foodController.createFood
 );
 
+router.get("/", authMiddleware.authUserMiddleware, foodController.getFoodItems);
 module.exports = router;
