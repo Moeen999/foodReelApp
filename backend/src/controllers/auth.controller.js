@@ -1,7 +1,7 @@
-const userModel = require("../models/user.models.js");
+const userModel = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const foodPartenerModel = require("../models/foodpartener.models.js");
+const foodPartenerModel = require("../models/foodpartener.model.js");
 //! user Auth Controller's
 async function registerUser(req, res) {
   const { fullName, email, password } = req.body;
@@ -66,7 +66,7 @@ async function loginUser(req, res) {
     },
   });
 }
-async function logoutUser(req, res) {
+function logoutUser(req, res) {
   res.clearCookie("token");
   res.status(200).send({ message: "User logged out successfully" });
 }
