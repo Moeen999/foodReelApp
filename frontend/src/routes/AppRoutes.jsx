@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import UserRegister from "../pages/UserRegister";
-import UserLogin from "../pages/UserLogin";
-import PartnerLogin from "../pages/PartnerLogin";
-import PartnerRegister from "../pages/PartnerRegister";
+import UserRegister from "../pages/auth/UserRegister";
+import UserLogin from "../pages/auth/UserLogin";
+import PartnerLogin from "../pages/auth/PartnerLogin";
+import PartnerRegister from "../pages/auth/PartnerRegister";
+import Home from "../pages/general/Home";
+import CreateFood from "../pages/food-partener/CreateFood";
 const AppRoutes = () => {
   return (
     <Router>
@@ -11,6 +13,8 @@ const AppRoutes = () => {
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/foodpartener/login" element={<PartnerLogin />} />
         <Route path="/foodpartener/register" element={<PartnerRegister />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/createfood" element={<CreateFood/>}/>
       </Routes>
     </Router>
   );

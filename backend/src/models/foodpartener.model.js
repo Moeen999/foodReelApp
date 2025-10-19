@@ -2,11 +2,19 @@ const mongoose = require("mongoose");
 
 const foodPartenerSchema = new mongoose.Schema(
   {
-    fullName: {
+    bussinessname: {
       type: String,
       required: true,
     },
-    email: {
+    contactname:{
+      type: String,
+      required: true,
+    },
+    phone:{
+      type:String,
+      require:true
+    },
+    bussinessemail: {
       type: String,
       required: true,
       unique: true,
@@ -15,6 +23,10 @@ const foodPartenerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    address:{
+      type:String,
+      required:true
+    }
   },
   { timestamps: true }
 );

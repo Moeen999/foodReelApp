@@ -74,9 +74,9 @@ function logoutUser(req, res) {
 //! foodPartener Auth Controller's
 
 async function registerFoodPartener(req, res) {
-  const { fullName, email, password } = req.body;
+  const { bussinessname, contactname, phone, bussinessemail, password, address } = req.body;
   const isFoodPartenerAlreadyExists = await foodPartenerModel.findOne({
-    email,
+    bussinessemail,
   });
 
   if (isFoodPartenerAlreadyExists) {
@@ -85,9 +85,12 @@ async function registerFoodPartener(req, res) {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const foodPartener = await foodPartenerModel.create({
-    fullName,
-    email,
+    bussinessname,
+    contactname,
+    phone,
+    bussinessemail,
     password: hashedPassword,
+    address,
   });
 
   const token = jwt.sign(
@@ -103,16 +106,19 @@ async function registerFoodPartener(req, res) {
     message: "Food Partener registered successfully",
     foodPartener: {
       _id: foodPartener._id,
-      fullName: foodPartener.fullName,
-      email: foodPartener.email,
+      bussinessname: foodPartener.bussinessname,
+      contactname: foodPartener.contactname,
+      phone: foodPartener.phone,
+      bussinessemail: foodPartener.bussinessemail,
+      address: foodPartener.address,
     },
   });
 }
 
 async function loginFoodPartener(req, res) {
-  const { email, password } = req.body;
+  const { bussinessemail, password } = req.body;
   const foodPartener = await foodPartenerModel.findOne({
-    email,
+    bussinessemail,
   });
 
   if (!foodPartener) {
@@ -136,8 +142,11 @@ async function loginFoodPartener(req, res) {
     message: "Food Partener logged in successfully",
     foodPartener: {
       _id: foodPartener._id,
-      fullName: foodPartener.fullName,
-      email: foodPartener.email,
+      bussinessname: foodPartener.bussinessname,
+      contactname: foodPartener.contactname,
+      phone: foodPartener.phone,
+      bussinessemail: foodPartener.bussinessemail,
+      address: foodPartener.address,
     },
   });
 }

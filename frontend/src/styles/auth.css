@@ -1,4 +1,4 @@
-@import './theme.css';
+@import "./theme.css";
 
 .auth-container {
   min-height: 100vh;
@@ -16,7 +16,7 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .auth-title {
@@ -41,6 +41,16 @@
 .form-label {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
+}
+.emailPass {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width:768px) {
+ .emailPass{
+   display: flex;
+   flex-direction: column;
+ }
 }
 
 .form-input {
@@ -87,6 +97,37 @@
 
 .auth-link a:hover {
   text-decoration: underline;
+}
+
+/* Additional styles for CreateFood page */
+.file-info {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+.back-btn {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 100px;
 }
 
 .auth-links {
