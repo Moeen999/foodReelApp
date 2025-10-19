@@ -1,4 +1,3 @@
-/* Video Feed Styles - Instagram/TikTok Reels Style */
 .video-feed-container {
   height: 100vh;
   overflow-y: auto;
@@ -36,6 +35,25 @@
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   padding: 2rem;
   z-index: 10;
+}
+.backIcon {
+  color: black;
+  position: absolute;
+  z-index: 999;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ff8e8e;
+  border-radius: 50%;
+  color: white;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s ease-in-out;
+}
+.backIcon:hover {
+  background-color: #ff6b6b;
+  border: 1px solid #ffff;
 }
 
 .video-info {
@@ -121,7 +139,6 @@
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* Loading and Empty States */
 .video-feed-loading,
 .video-feed-empty {
   height: 100vh;
@@ -151,36 +168,34 @@
   opacity: 0.8;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .video-overlay {
     padding: 1.5rem;
   }
-  
+
   .food-name {
     font-size: 1.3rem;
   }
-  
+
   .food-desc {
     font-size: 0.9rem;
   }
-  
+
   .visit-store-btn {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
   }
-  
+
   .video-indicator {
     right: 0.5rem;
   }
-  
+
   .indicator-dot {
     width: 6px;
     height: 6px;
   }
 }
 
-/* Hide scrollbar but keep functionality */
 .video-feed-container::-webkit-scrollbar {
   display: none;
 }
@@ -190,7 +205,6 @@
   scrollbar-width: none;
 }
 
-/* Smooth transitions */
 * {
   box-sizing: border-box;
 }

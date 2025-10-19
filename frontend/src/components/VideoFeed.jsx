@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import {ArrowLeft} from "lucide-react"
+import { useNavigate } from 'react-router-dom';
 
 const VideoFeed = () => {
   const [foodItems, setFoodItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFoodItems();
@@ -24,7 +27,7 @@ const VideoFeed = () => {
     }
   };
 
-  const handleScroll = (e) => {
+  const handleScroll = () => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -100,6 +103,9 @@ const VideoFeed = () => {
     <div className="video-feed-container" ref={containerRef} onScroll={handleScroll}>
       {foodItems.map((item, index) => (
         <div key={item._id} className="video-item">
+          <button className='backIcon' onClick={()=>navigate(-1)}>
+        <ArrowLeft size={24}/>
+      </button>
           <video
             className="video-player"
             src={item.video}

@@ -1,5 +1,4 @@
 :root {
-  /* Light theme colors */
   --primary-color: #ff6b6b;
   --secondary-color: #4ecdc4;
   --background-color: #ffffff;
@@ -10,7 +9,6 @@
   --error-color: #ff4757;
   --success-color: #2ecc71;
 
-  /* Common variables */
   --border-radius: 8px;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
