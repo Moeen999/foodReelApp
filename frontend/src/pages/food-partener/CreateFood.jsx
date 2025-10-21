@@ -114,7 +114,7 @@ const CreateFood = () => {
             className="auth-button"
             disabled={uploading}
           >
-            {uploading ? 'Please wait this may take few minutes.....' : 'Upload Food Video'}
+            {uploading ? 'Processing video this may take few minutes.....' : 'Upload Food Video'}
           </button>
         </form>
         

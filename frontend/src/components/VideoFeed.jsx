@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {ArrowLeft} from "lucide-react"
-import { useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const VideoFeed = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -19,6 +19,7 @@ const VideoFeed = () => {
       const response = await axios.get('http://localhost:3000/api/food', {
         withCredentials: true
       });
+      console.log("response", response)
       setFoodItems(response.data.foodItems);
       setLoading(false);
     } catch (error) {
@@ -94,6 +95,12 @@ const VideoFeed = () => {
         <div className="empty-message">
           <h2>No food videos yet!</h2>
           <p>Be the first to share your delicious creations!</p>
+          <button className='visit-store-btn'>
+          <Link to={"/createfood"}>
+          Upload Now
+          </Link>
+          </button>
+          
         </div>
       </div>
     );
@@ -101,7 +108,7 @@ const VideoFeed = () => {
 
   return (
     <div className="video-feed-container" ref={containerRef} onScroll={handleScroll}>
-      {foodItems.map((item, index) => (
+      {foodItems.map((item) => (
         <div key={item._id} className="video-item">
           <button className='backIcon' onClick={()=>navigate(-1)}>
         <ArrowLeft size={24}/>
@@ -128,7 +135,9 @@ const VideoFeed = () => {
               </div>
               
               <button className="visit-store-btn">
+                <Link to={"/foodpartener/"+item.foodPartener}>
                 Visit Store
+                </Link>
               </button>
             </div>
           </div>

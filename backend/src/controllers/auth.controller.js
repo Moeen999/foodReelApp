@@ -74,45 +74,43 @@ function logoutUser(req, res) {
 //! foodPartener Auth Controller's
 
 async function registerFoodPartener(req, res) {
-  const { bussinessname, contactname, phone, bussinessemail, password, address } = req.body;
-  const isFoodPartenerAlreadyExists = await foodPartenerModel.findOne({
-    bussinessemail,
-  });
+  try {
+    const {
+      bussinessname,
+      contactname,
+      phone,
+      bussinessemail,
+      password,
+      address,
+    } = req.body;
+    const isFoodPartenerAlreadyExists = await foodPartenerModel.findOne({
+      bussinessemail,
+    });
+    if (isFoodPartenerAlreadyExists) {
+      return res.status(400).send("Food Partner already exists");
+    }
 
-  if (isFoodPartenerAlreadyExists) {
-    return res.status(400).send("Food Partener already exists");
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const foodPartener = await foodPartenerModel.create({
+      bussinessname,
+      contactname,
+      phone,
+      bussinessemail,
+      password: hashedPassword,
+      address,
+    });
+
+    const token = jwt.sign({ id: foodPartener._id }, process.env.JWT_SECRET);
+    res.cookie("token", token);
+
+    res.status(201).send({
+      message: "Food Partner registered successfully",
+      foodPartener,
+    });
+  } catch (err) {
+    console.error("Registration error:", err);
+    res.status(500).send("Internal Server Error");
   }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const foodPartener = await foodPartenerModel.create({
-    bussinessname,
-    contactname,
-    phone,
-    bussinessemail,
-    password: hashedPassword,
-    address,
-  });
-
-  const token = jwt.sign(
-    {
-      id: foodPartener._id,
-    },
-    process.env.JWT_SECRET
-  );
-
-  res.cookie("token", token);
-
-  res.status(201).send({
-    message: "Food Partener registered successfully",
-    foodPartener: {
-      _id: foodPartener._id,
-      bussinessname: foodPartener.bussinessname,
-      contactname: foodPartener.contactname,
-      phone: foodPartener.phone,
-      bussinessemail: foodPartener.bussinessemail,
-      address: foodPartener.address,
-    },
-  });
 }
 
 async function loginFoodPartener(req, res) {

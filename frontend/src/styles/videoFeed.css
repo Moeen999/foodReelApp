@@ -156,8 +156,11 @@
 
 .empty-message {
   text-align: center;
+  line-height: 3rem;
 }
-
+a {
+  text-decoration: none;
+}
 .empty-message h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
