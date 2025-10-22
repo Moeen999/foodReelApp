@@ -8,7 +8,7 @@ const Navbar = () => {
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("auth"));
     setAuth(stored);
-  }, []);
+  }, [auth]);
 
   const logout = () => {
     localStorage.removeItem("auth");
