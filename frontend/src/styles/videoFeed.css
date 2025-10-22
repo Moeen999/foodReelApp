@@ -62,7 +62,12 @@
   gap: 1rem;
   max-width: 90%;
 }
-
+  @media (max-width:768px) {
+    .video-info{
+      position: relative;
+      bottom: 6rem;
+    }
+  }
 .food-description {
   color: white;
 }

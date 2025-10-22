@@ -1,11 +1,12 @@
-import "./App.css"
-import AppRoutes from "./routes/AppRoutes"
-const App = () => {
+import Navbar from "./components/Navbar";
+import AppRoutes from "./routes/AppRoutes";
+
+function App() {
   return (
-    <div className="screen">
-      <AppRoutes/>
-    </div>
-  )
+    <>
+      <AppRoutes />
+    </>
+  );
 }
 
-export default App
+export default App;

@@ -13,7 +13,7 @@ const PartnerLogin = () => {
   const handleFormSubmit = async (e) => {
     const { bussinessemail, password } = partenerLoginValues;
     e.preventDefault();
-    await axios.post(
+    const response = await axios.post(
       "http://localhost:3000/api/auth/foodpartener/login",
       {
         bussinessemail,
@@ -23,11 +23,19 @@ const PartnerLogin = () => {
         withCredentials: true,
       }
     );
+    console.log(response)
     setpartenerLoginValues({
       bussinessemail: "",
       password: "",
     });
-    navigate("/createfood")
+    localStorage.setItem(
+      "auth",
+      JSON.stringify({
+        role: "partner",
+        id: response.data.foodPartener._id,
+      })
+    );
+    navigate("/")
   };
   return (
     <div className="auth-container">

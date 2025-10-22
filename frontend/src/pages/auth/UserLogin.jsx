@@ -14,7 +14,7 @@ const UserLogin = () => {
   const handleFormSubmit = async (e) => {
     const { email, password } = userLoginValues;
     e.preventDefault();
-    await axios.post("http://localhost:3000/api/auth/user/login", {
+  const response =  await axios.post("http://localhost:3000/api/auth/user/login", {
       email,
       password,
     }, {
@@ -25,6 +25,13 @@ const UserLogin = () => {
       email: "",
       password: "",
     });
+    localStorage.setItem(
+      "auth",
+      JSON.stringify({
+        role: "user", 
+        id: response.data.user._id,
+      })
+    );
     navigate("/");
   };
 

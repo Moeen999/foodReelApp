@@ -1,0 +1,68 @@
+body {
+  background: radial-gradient(circle at top left, #1e1e1e, #121212);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+.navbar {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);  
+}
+    @media (max-width:768px) {
+        .navbar{
+            flex-direction: column;
+        }
+    }
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ff6f61;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff6f61;
+  transform: scale(1.05);
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff6f61, #ff3d3d);
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, #ff3d3d, #ff6f61);
+  transform: scale(1.05);
+}
