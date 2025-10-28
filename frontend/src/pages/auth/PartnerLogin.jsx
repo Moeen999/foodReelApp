@@ -23,7 +23,6 @@ const PartnerLogin = () => {
         withCredentials: true,
       }
     );
-    console.log(response)
     setpartenerLoginValues({
       bussinessemail: "",
       password: "",

@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="navbar">
       <h1 className="logo">SnackShot</h1>
       <div className="nav-links">
-        <Link to="/">Home</Link>
+        {auth && <Link to="/">Home</Link>}
         {!auth && <Link to="/user/login">Login</Link>}
         {!auth && <Link to="/user/register">Register</Link>}
 

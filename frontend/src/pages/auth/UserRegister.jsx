@@ -106,11 +106,11 @@ const UserRegister = () => {
         </form>
         <div className="auth-links">
           <div className="auth-link">
-            Already have an account?{" "}
+            Already have an account?
             <NavLink to="/user/login">Login here</NavLink>
           </div>
           <div className="auth-link">
-            Want to be a food partner?{" "}
+            Want to be a food partner?
             <NavLink to="/foodpartener/register">Register as Partner</NavLink>
           </div>
         </div>

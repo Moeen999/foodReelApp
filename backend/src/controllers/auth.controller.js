@@ -118,7 +118,6 @@ async function loginFoodPartener(req, res) {
   const foodPartener = await foodPartenerModel.findOne({
     bussinessemail,
   });
-
   if (!foodPartener) {
     return res.status(400).send("Invalid email or password");
   }

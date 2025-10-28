@@ -97,6 +97,8 @@
   border: none;
   padding: 1rem 2rem;
   border-radius: 25px;
+  position: relative;
+  bottom: 4rem;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
@@ -192,6 +194,8 @@ a {
   .visit-store-btn {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
+    position: relative;
+    top: 0.7rem;
   }
 
   .video-indicator {
