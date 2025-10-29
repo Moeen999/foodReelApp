@@ -23,7 +23,7 @@ const Navbar = () => {
         {!auth && <Link to="/user/login">Login</Link>}
         {!auth && <Link to="/user/register">Register</Link>}
 
-        {auth?.role === "partner" && (
+        {auth?.role == "partner" && (
           <>
             <Link to="/createfood">Create Food</Link>
             <Link to={`/foodpartener/${auth.id}`}>Profile</Link>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const PartnerRegister = () => {
+  const navigate = useNavigate();
   const [registerValues, setRegisterValues] = useState({
     bussinessname: "",
     contactname: "",
@@ -13,7 +14,6 @@ const PartnerRegister = () => {
     password: "",
     address: "",
   });
-  const navigate = useNavigate();
   const handleFormSubmit = async (e) => {
     const {
       bussinessname,
@@ -159,11 +159,11 @@ const PartnerRegister = () => {
           </form>
           <div className="auth-links">
             <div className="auth-link">
-              Already a partner?{" "}
+              Already a partner?
               <NavLink to="/foodpartener/login">Login here</NavLink>
             </div>
             <div className="auth-link">
-              Want to register as user instead?{" "}
+              Want to register as user instead?
               <NavLink to="/user/register">Register as User</NavLink>
             </div>
           </div>
