@@ -1,23 +1,20 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import "../styles/navbar.css";
+import useAuth from "../context/useAuth";
 
 const Navbar = () => {
-  const [auth, setAuth] = useState(null);
+  const { auth, setAuth } = useAuth();
 
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("auth"));
-    setAuth(stored);
-  }, [auth]);
-
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("auth");
+    setAuth(null);
     window.location.href = "/user/login";
-  };
+  }, [setAuth]);
 
   return (
     <nav className="navbar">
-      <h1 className="logo">SnackShot</h1>
+      <h1 className="logo">BiteReels</h1>
       <div className="nav-links">
         {auth && <Link to="/">Home</Link>}
         {!auth && <Link to="/user/login">Login</Link>}

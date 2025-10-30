@@ -3,9 +3,11 @@ import "../../styles/auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../context/useAuth";
 
 const PartnerRegister = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const [registerValues, setRegisterValues] = useState({
     bussinessname: "",
     contactname: "",
@@ -24,7 +26,7 @@ const PartnerRegister = () => {
       address,
     } = registerValues;
     e.preventDefault();
-    await axios.post(
+    const response = await axios.post(
       "http://localhost:3000/api/auth/foodpartener/register",
       {
         bussinessname,
@@ -47,6 +49,12 @@ const PartnerRegister = () => {
       password: "",
       address: "",
     });
+    const newAuth = {
+      role: "partner",
+      id: response.data.foodPartener._id,
+    };
+    localStorage.setItem("auth", JSON.stringify(newAuth));
+    setAuth(newAuth);
     navigate("/createfood");
   };
   return (

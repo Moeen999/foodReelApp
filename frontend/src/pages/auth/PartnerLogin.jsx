@@ -3,8 +3,10 @@ import "../../styles/auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../context/useAuth";
 const PartnerLogin = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const [partenerLoginValues, setpartenerLoginValues] = useState({
     bussinessemail: "",
     password: "",
@@ -27,13 +29,12 @@ const PartnerLogin = () => {
       bussinessemail: "",
       password: "",
     });
-    localStorage.setItem(
-      "auth",
-      JSON.stringify({
-        role: "partner",
-        id: response.data.foodPartener._id,
-      })
-    );
+    const newAuth = {
+      role: "partner",
+      id: response.data.foodPartener._id,
+    };
+    localStorage.setItem("auth", JSON.stringify(newAuth));
+    setAuth(newAuth);
     navigate("/")
   };
   return (

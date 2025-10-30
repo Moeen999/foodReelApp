@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {ArrowLeft} from "lucide-react"
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../context/useAuth';
 
 const VideoFeed = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -9,6 +10,7 @@ const VideoFeed = () => {
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
   useEffect(() => {
     fetchFoodItems();
@@ -94,13 +96,16 @@ const VideoFeed = () => {
       <div className="video-feed-empty">
         <div className="empty-message">
           <h2>No food videos yet!</h2>
-          <p>Be the first to share your delicious creations!</p>
-          <button className='visit-store-btn'>
-          <Link to={"/createfood"}>
-          Upload Now
-          </Link>
-          </button>
-          
+          {auth?.role === 'partner' && (
+            <>
+              <p>Be the first to share your delicious creations!</p>
+              <button className='visit-store-btn'>
+                <Link to={"/createfood"}>
+                  Upload Now
+                </Link>
+              </button>
+            </>
+          )}
         </div>
       </div>
     );

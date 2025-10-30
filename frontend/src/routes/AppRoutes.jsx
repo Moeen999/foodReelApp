@@ -7,9 +7,10 @@ import Home from "../pages/general/Home";
 import CreateFood from "../pages/food-partener/CreateFood";
 import FoodPartnerProfile from "../pages/food-partener/Profile";
 import Navbar from "../components/Navbar";
+import useAuth from "../context/useAuth";
 
 function ProtectedRoute({ children, allowedRoles }) {
-  const auth = JSON.parse(localStorage.getItem("auth"));
+  const { auth } = useAuth();
   if (!auth) return <Navigate to="/user/login" />;
   if (allowedRoles && !allowedRoles.includes(auth.role)) return <Navigate to="/" />;
   return children;
