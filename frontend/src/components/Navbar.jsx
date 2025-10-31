@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useCallback } from "react";
 import "../styles/navbar.css";
 import useAuth from "../context/useAuth";
@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h1 className="logo">BiteReels</h1>
+      <NavLink to="/" className="logo">TasteStream</NavLink>
       <div className="nav-links">
         {auth && <Link to="/">Home</Link>}
         {!auth && <Link to="/user/login">Login</Link>}
