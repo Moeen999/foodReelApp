@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import {ArrowLeft} from "lucide-react"
-import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../context/useAuth';
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { ArrowLeft } from "lucide-react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../context/useAuth";
 
 const VideoFeed = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -18,14 +18,14 @@ const VideoFeed = () => {
 
   const fetchFoodItems = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/food', {
-        withCredentials: true
+      const response = await axios.get("http://localhost:3000/api/food", {
+        withCredentials: true,
       });
-      console.log("response", response)
+      console.log("response", response);
       setFoodItems(response.data.foodItems);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching food items:', error);
+      console.error("Error fetching food items:", error);
       setLoading(false);
     }
   };
@@ -37,8 +37,12 @@ const VideoFeed = () => {
     const scrollTop = container.scrollTop;
     const itemHeight = window.innerHeight;
     const newIndex = Math.round(scrollTop / itemHeight);
-    
-    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < foodItems.length) {
+
+    if (
+      newIndex !== currentIndex &&
+      newIndex >= 0 &&
+      newIndex < foodItems.length
+    ) {
       setCurrentIndex(newIndex);
     }
   };
@@ -50,22 +54,28 @@ const VideoFeed = () => {
     const itemHeight = window.innerHeight;
     container.scrollTo({
       top: index * itemHeight,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   const handleWheel = (e) => {
     e.preventDefault();
     const delta = e.deltaY > 0 ? 1 : -1;
-    const newIndex = Math.max(0, Math.min(foodItems.length - 1, currentIndex + delta));
+    const newIndex = Math.max(
+      0,
+      Math.min(foodItems.length - 1, currentIndex + delta)
+    );
     scrollToIndex(newIndex);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
-      const delta = e.key === 'ArrowDown' ? 1 : -1;
-      const newIndex = Math.max(0, Math.min(foodItems.length - 1, currentIndex + delta));
+      const delta = e.key === "ArrowDown" ? 1 : -1;
+      const newIndex = Math.max(
+        0,
+        Math.min(foodItems.length - 1, currentIndex + delta)
+      );
       scrollToIndex(newIndex);
     }
   };
@@ -73,12 +83,12 @@ const VideoFeed = () => {
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-      window.addEventListener('keydown', handleKeyDown);
-      
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      window.addEventListener("keydown", handleKeyDown);
+
       return () => {
-        container.removeEventListener('wheel', handleWheel);
-        window.removeEventListener('keydown', handleKeyDown);
+        container.removeEventListener("wheel", handleWheel);
+        window.removeEventListener("keydown", handleKeyDown);
       };
     }
   }, [currentIndex, foodItems.length]);
@@ -96,13 +106,11 @@ const VideoFeed = () => {
       <div className="video-feed-empty">
         <div className="empty-message">
           <h2>No food videos yet!</h2>
-          {auth?.role === 'partner' && (
+          {auth?.role === "partner" && (
             <>
               <p>Be the first to share your delicious creations!</p>
-              <button className='visit-store-btn'>
-                <Link to={"/createfood"}>
-                  Upload Now
-                </Link>
+              <button className="visit-store-btn">
+                <Link to={"/createfood"}>Upload Now</Link>
               </button>
             </>
           )}
@@ -112,46 +120,50 @@ const VideoFeed = () => {
   }
 
   return (
-    <div className="video-feed-container" ref={containerRef} onScroll={handleScroll}>
+    <div
+      className="video-feed-container"
+      ref={containerRef}
+      onScroll={handleScroll}
+    >
       {foodItems.map((item) => (
         <div key={item._id} className="video-item">
-          <button className='backIcon' onClick={()=>navigate(-1)}>
-        <ArrowLeft size={24}/>
-      </button>
+          <button className="backIcon" onClick={() => navigate(-1)}>
+            <ArrowLeft size={24} />
+          </button>
           <video
             className="video-player"
             src={item.video}
             autoPlay
-            muted
             loop
             playsInline
           />
-          
+
           <div className="video-overlay">
             <div className="video-info">
               <div className="food-description">
                 <h3 className="food-name">{item.name}</h3>
                 <p className="food-desc">
-                  {item.description && item.description.length > 100 
-                    ? `${item.description.substring(0, 100)}...` 
-                    : item.description || 'Delicious food waiting for you!'
-                  }
+                  {item.description && item.description.length > 100
+                    ? `${item.description.substring(0, 100)}...`
+                    : item.description || "Delicious food waiting for you!"}
                 </p>
               </div>
-              
+
               <button className="visit-store-btn">
-                <Link to={"/foodpartener/"+item.foodPartener}>
-                Visit Store
-                </Link>
+                <NavLink to={"/foodpartener/" + item?.foodPartener}>
+                  Visit Store
+                </NavLink>
               </button>
             </div>
           </div>
-          
+
           <div className="video-indicator">
             {foodItems.map((_, i) => (
               <div
                 key={i}
-                className={`indicator-dot ${i === currentIndex ? 'active' : ''}`}
+                className={`indicator-dot ${
+                  i === currentIndex ? "active" : ""
+                }`}
                 onClick={() => scrollToIndex(i)}
               />
             ))}

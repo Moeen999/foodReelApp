@@ -19,7 +19,9 @@ async function registerUser(req, res) {
     {
       userID: user._id,
     },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,{
+      
+    }
   );
   res.cookie("token", token);
 

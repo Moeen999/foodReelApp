@@ -61,7 +61,7 @@ const PartnerRegister = () => {
     <>
       <div className="auth-container">
         <div className="auth-card">
-          <h1 className="auth-title">Food Partner Registration</h1>
+          <h1 className="auth-title">Register as Food Partner</h1>
           <form className="auth-form" onSubmit={handleFormSubmit}>
             <div className="form-group">
               <label className="form-label">Business Name</label>
