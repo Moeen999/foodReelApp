@@ -92,18 +92,18 @@
 }
 
 .visit-store-btn {
+  align-self: flex-start;
   background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
   border: none;
-  padding: 1rem 2rem;
   border-radius: 25px;
-  position: relative;
+  color: white;
+  cursor: pointer;
+  padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: bold;
-  cursor: pointer;
+  margin-bottom: 2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-  align-self: flex-start;
 }
 
 .visit-store-btn:hover {
@@ -188,13 +188,6 @@ a {
 
   .food-desc {
     font-size: 0.9rem;
-  }
-
-  .visit-store-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    position: relative;
-    top: 0.7rem;
   }
 
   .video-indicator {

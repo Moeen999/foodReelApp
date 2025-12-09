@@ -16,19 +16,22 @@ const UserLogin = () => {
   const handleFormSubmit = async (e) => {
     const { email, password } = userLoginValues;
     e.preventDefault();
-  const response =  await axios.post("http://localhost:3000/api/auth/user/login", {
-      email,
-      password,
-    }, {
-      withCredentials: true
-    });
-
+    const response = await axios.post(
+      "http://localhost:3000/api/auth/user/login",
+      {
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     setUserLoginValues({
       email: "",
       password: "",
     });
     const newAuth = {
-      role: "user", 
+      role: "user",
       id: response.data.user._id,
     };
     localStorage.setItem("auth", JSON.stringify(newAuth));
@@ -66,7 +69,10 @@ const UserLogin = () => {
               name="password"
               value={userLoginValues.password}
               onChange={(e) =>
-                setUserLoginValues({ ...userLoginValues, password: e.target.value })
+                setUserLoginValues({
+                  ...userLoginValues,
+                  password: e.target.value,
+                })
               }
             />
           </div>
