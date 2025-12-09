@@ -42,11 +42,11 @@ const FoodPartnerProfile = () => {
       </button>
 
       <div className="partner-header">
-        <img
+        {/* <img
           src={partner.profilePicture || "/default-avatar.jpg"}
           alt={partner.bussinessname}
           className="partner-avatar"
-        />
+        /> */}
 
         <h2 className="partner-name">{partner.contactname || "Unknown Partner"}</h2>
         <p className="partner-address">{partner.address || "Address not available"}</p>
@@ -54,7 +54,7 @@ const FoodPartnerProfile = () => {
         <div className="partner-stats">
           <div>
             <h3>{videos.length}</h3>
-            <p>Uploaded Videos</p>
+            <p className="uploadedVideos">Uploaded Videos</p>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 .partner-profile-container {
-  max-width: 900px;
+  max-width: 100vh;
   margin: 50px auto;
   padding: 20px;
   font-family: "Poppins", sans-serif;
   color: #333;
-  height: 100%;
+  height: 100vh;
 }
 
 .back-btn {
@@ -41,7 +41,7 @@
 .partner-name {
   font-size: 1.8rem;
   margin-bottom: 4px;
-  color: #222;
+  color: #ddd;
 }
 
 .partner-address {
@@ -80,6 +80,7 @@
 .video-section-title {
   font-size: 1.4rem;
   font-weight: 600;
+  color: #ddd;
   margin-bottom: 20px;
 }
 
@@ -106,6 +107,12 @@
   height: 200px;
   object-fit: cover;
   border-radius: 12px;
+}
+
+.uploadedVideos{
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
 .video-info {
