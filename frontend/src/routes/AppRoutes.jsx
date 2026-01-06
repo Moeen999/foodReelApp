@@ -47,7 +47,7 @@ const AppRoutes = () => {
         <Route
           path="/foodpartener/:id"
           element={
-            <ProtectedRoute allowedRoles={["partner"]}>
+            <ProtectedRoute allowedRoles={["user","partner"]}>
               <FoodPartnerProfile />
             </ProtectedRoute>
           }
