@@ -11,6 +11,8 @@ const FoodPartnerProfile = () => {
   const [partner, setPartner] = useState(null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedVideoToDelete, setSelectedVideoToDelete] = useState(null);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   useEffect(() => {
     const fetchPartnerData = async () => {
@@ -33,6 +35,16 @@ const FoodPartnerProfile = () => {
     fetchPartnerData();
   }, [id]);
 
+  const openConfirmModal = (video) => {
+    setSelectedVideoToDelete(video);
+    setIsConfirmOpen(true);
+  };
+
+  const closeConfirmModal = () => {
+    setSelectedVideoToDelete(null);
+    setIsConfirmOpen(false);
+  };
+
   const handleDeleteVideo = async (videoId) => {
     try {
       const { data } = await axios.delete(
@@ -49,6 +61,12 @@ const FoodPartnerProfile = () => {
       toast.error(error.message);
       console.error("Error deleting video:", error);
     }
+  };
+
+  const confirmDeleteVideo = async () => {
+    if (!selectedVideoToDelete) return;
+    await handleDeleteVideo(selectedVideoToDelete._id);
+    closeConfirmModal();
   };
 
   if (loading)
@@ -92,7 +110,7 @@ const FoodPartnerProfile = () => {
             {videos?.map((item) => (
               <div key={item._id} className="video-card">
                 <Trash2Icon
-                  onClick={() => handleDeleteVideo(item._id)}
+                  onClick={() => openConfirmModal(item)}
                   className="trashIcon"
                 />
                 <video
@@ -111,6 +129,26 @@ const FoodPartnerProfile = () => {
           </div>
         )}
       </div>
+
+      {isConfirmOpen && selectedVideoToDelete && (
+        <div className="confirm-modal-backdrop">
+          <div className="confirm-modal">
+            <h3>Delete video?</h3>
+            <p>
+              Are you sure you want to delete "{selectedVideoToDelete.name}"?
+              This action cannot be undone.
+            </p>
+            <div className="confirm-modal-actions">
+              <button className="cancel-btn" onClick={closeConfirmModal}>
+                Cancel
+              </button>
+              <button className="delete-btn" onClick={confirmDeleteVideo}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
