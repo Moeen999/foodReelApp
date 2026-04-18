@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2Icon } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../context/useAuth";
 
@@ -21,7 +21,6 @@ const VideoFeed = () => {
       const response = await axios.get("http://localhost:3000/api/food", {
         withCredentials: true,
       });
-      console.log("response", response);
       setFoodItems(response.data.foodItems);
       setLoading(false);
     } catch (error) {
@@ -63,7 +62,7 @@ const VideoFeed = () => {
     const delta = e.deltaY > 0 ? 1 : -1;
     const newIndex = Math.max(
       0,
-      Math.min(foodItems.length - 1, currentIndex + delta)
+      Math.min(foodItems.length - 1, currentIndex + delta),
     );
     scrollToIndex(newIndex);
   };
@@ -74,7 +73,7 @@ const VideoFeed = () => {
       const delta = e.key === "ArrowDown" ? 1 : -1;
       const newIndex = Math.max(
         0,
-        Math.min(foodItems.length - 1, currentIndex + delta)
+        Math.min(foodItems.length - 1, currentIndex + delta),
       );
       scrollToIndex(newIndex);
     }
@@ -96,7 +95,7 @@ const VideoFeed = () => {
   if (loading) {
     return (
       <div className="video-feed-loading">
-        <div className="loading-spinner">Loading delicious food videos...</div>
+        <div className="loading-spinner"><Loader2Icon size={36} color="#FF685C"/></div>
       </div>
     );
   }

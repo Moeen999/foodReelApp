@@ -62,12 +62,12 @@
   gap: 1rem;
   max-width: 90%;
 }
-  @media (max-width:768px) {
-    .video-info{
-      position: relative;
-      bottom: 6rem;
-    }
+@media (max-width: 768px) {
+  .video-info {
+    position: relative;
+    bottom: 6rem;
   }
+}
 .food-description {
   color: white;
 }
@@ -80,15 +80,10 @@
 }
 
 .food-desc {
-  font-size: 1rem;
+  font-size: 2rem;
   line-height: 1.4;
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: white !important ;
 }
 
 .visit-store-btn {
@@ -156,8 +151,12 @@
 }
 
 .loading-spinner {
-  font-size: 1.2rem;
-  text-align: center;
+  animation: animate 2s linear infinite;
+}
+@keyframes animate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .empty-message {
