@@ -13,8 +13,14 @@ router.post(
   "/",
   authMiddleware.authFoodPartenerMiddleware,
   uploadFile.single("video"),
-  foodController.createFood
+  foodController.createFood,
 );
 
 router.get("/", authMiddleware.authUserMiddleware, foodController.getFoodItems);
+router.delete(
+  "/delete/:id",
+  authMiddleware.authFoodPartenerMiddleware,
+  foodController.deleteFoodVideo,
+);
+
 module.exports = router;

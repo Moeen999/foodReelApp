@@ -14,16 +14,18 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <NavLink to="/" className="logo">TasteStream</NavLink>
+      <NavLink to="/" className="logo">
+        TasteStream
+      </NavLink>
       <div className="nav-links">
-        {auth && <Link to="/">Home</Link>}
+        {auth && <NavLink to="/">Home</NavLink>}
         {!auth && <Link to="/user/login">Login</Link>}
         {!auth && <Link to="/user/register">Register</Link>}
 
         {auth?.role == "partner" && (
           <>
-            <Link to="/createfood">Create</Link>
-            <Link to={`/foodpartener/${auth.id}`}>Profile</Link>
+            <NavLink to="/createfood">Create</NavLink>
+            <NavLink to={`/foodpartener/${auth.id}`}>Profile</NavLink>
           </>
         )}
 

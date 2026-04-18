@@ -18,7 +18,7 @@ const VideoFeed = () => {
 
   const fetchFoodItems = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/food", {
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/food`, {
         withCredentials: true,
       });
       setFoodItems(response.data.foodItems);

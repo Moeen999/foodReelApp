@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/profile.css";
 import { ArrowLeft, Loader2Icon, Trash2Icon } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 const FoodPartnerProfile = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const FoodPartnerProfile = () => {
     const fetchPartnerData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/foodpartener/${id}`,
+          `${import.meta.env.VITE_SERVER_URL}/api/foodpartener/${id}`,
           { withCredentials: true },
         );
 
@@ -31,6 +32,24 @@ const FoodPartnerProfile = () => {
 
     fetchPartnerData();
   }, [id]);
+
+  const handleDeleteVideo = async (videoId) => {
+    try {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_SERVER_URL}/api/food/delete/${videoId}`,
+        {
+          withCredentials: true,
+        },
+      );
+      toast.success(data.message);
+      setVideos((prevVideos) =>
+        prevVideos.filter((video) => video._id !== videoId),
+      );
+    } catch (error) {
+      toast.error(error.message);
+      console.error("Error deleting video:", error);
+    }
+  };
 
   if (loading)
     return (
@@ -72,7 +91,10 @@ const FoodPartnerProfile = () => {
           <div className="video-grid">
             {videos?.map((item) => (
               <div key={item._id} className="video-card">
-                <Trash2Icon className="trashIcon"/>
+                <Trash2Icon
+                  onClick={() => handleDeleteVideo(item._id)}
+                  className="trashIcon"
+                />
                 <video
                   src={item.video}
                   loop
