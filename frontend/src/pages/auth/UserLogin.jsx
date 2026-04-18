@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../context/useAuth";
+import toast from "react-hot-toast";
 
 const UserLogin = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const UserLogin = () => {
         withCredentials: true,
       }
     );
+    toast.success(response.data.message || "Login successful!");
     setUserLoginValues({
       email: "",
       password: "",

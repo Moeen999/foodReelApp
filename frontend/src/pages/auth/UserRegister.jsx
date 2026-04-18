@@ -3,6 +3,7 @@ import "../../styles/auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const UserRegister = () => {
   const [userRegisterValues, setUserRegisterValues] = useState({
@@ -11,24 +12,29 @@ const UserRegister = () => {
     email: "",
     password: "",
   });
-  
+
   const navigate = useNavigate();
   const handleFormSubmit = async (e) => {
-    const {firstName , lastName , email , password} = userRegisterValues;
+    const { firstName, lastName, email, password } = userRegisterValues;
     e.preventDefault();
-    await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/user/register`, {
-      fullName:firstName + " " + lastName,
-      email,
-      password
-    },{
-      withCredentials:true  
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/user/register`,
+      {
+        fullName: firstName + " " + lastName,
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      },
+    );
+    toast.success(response.data.message || "Registration successful!");
     setUserRegisterValues({
-      firstName:"",
-      lastName:"",
-      email:"",
-      password:"" 
-    })
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    });
     navigate("/");
   };
   return (
