@@ -17,7 +17,7 @@ const UserLogin = () => {
     const { email, password } = userLoginValues;
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:3000/api/auth/user/login",
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/user/login`,
       {
         email,
         password,

@@ -16,7 +16,7 @@ const PartnerLogin = () => {
     const { bussinessemail, password } = partenerLoginValues;
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:3000/api/auth/foodpartener/login",
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/foodpartener/login`,
       {
         bussinessemail,
         password,

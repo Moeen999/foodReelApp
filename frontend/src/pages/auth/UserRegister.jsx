@@ -16,7 +16,7 @@ const UserRegister = () => {
   const handleFormSubmit = async (e) => {
     const {firstName , lastName , email , password} = userRegisterValues;
     e.preventDefault();
-    await axios.post("http://localhost:3000/api/auth/user/register", {
+    await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/user/register`, {
       fullName:firstName + " " + lastName,
       email,
       password
