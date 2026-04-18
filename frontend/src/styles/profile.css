@@ -5,23 +5,34 @@
   font-family: "Poppins", sans-serif;
   color: #333;
   height: 100vh;
+  overflow-y: auto;
 }
 
+.partner-profile-container::-webkit-scrollbar {
+  display: none;
+}
+
+.partner-profile-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
 .back-btn {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  background: linear-gradient(90deg, #ff6f61, #ff3d3d);
   border: none;
-  background: #f0f0f0;
-  padding: 8px 15px;
-  border-radius: 10px;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
   font-weight: 500;
-  transition: 0.3s;
 }
 
 .back-btn:hover {
-  background: #ddd;
+  background: linear-gradient(90deg, #ff3d3d, #ff6f61);
+  transform: scale(1.05);
 }
 
 .partner-header {
@@ -88,13 +99,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  margin-bottom: 8rem;
 }
 
 .video-card {
   position: relative;
   border-radius: 12px;
+  padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  background-color: #161616;
   transition: transform 0.3s;
 }
 
@@ -109,7 +122,7 @@
   border-radius: 12px;
 }
 
-.uploadedVideos{
+.uploadedVideos {
   color: #666;
   font-size: 0.9rem;
   margin-top: 5px;
@@ -123,12 +136,12 @@
 .video-info h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #222;
+  color: white;
 }
 
 .video-info p {
   font-size: 0.9rem;
-  color: #666;
+  color: #ddd;
 }
 
 .no-videos {
@@ -138,10 +151,43 @@
   margin-top: 30px;
 }
 
-.partner-loading,
 .partner-error {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: #ff7a00;
+  align-items: center;
   text-align: center;
-  font-size: 1.2rem;
-  margin-top: 50px;
+  font-size: 3rem;
+}
+.partner-loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   color: #666;
+  animation: animate 2s linear infinite;
+}
+
+.trashIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  color: red;
+  cursor: pointer;
+}
+
+@keyframes animate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .video-info {
+    position: relative;
+    margin-top: 5rem;
+  }
 }

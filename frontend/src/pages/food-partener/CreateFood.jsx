@@ -1,31 +1,32 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../../styles/auth.css';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../../styles/auth.css";
+import toast from "react-hot-toast";
 
 const CreateFood = () => {
   const [foodData, setFoodData] = useState({
-    name: '',
-    description: '',
-    video: null
+    name: "",
+    description: "",
+    video: null,
   });
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFoodData(prev => ({
+    setFoodData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFoodData(prev => ({
+      setFoodData((prev) => ({
         ...prev,
-        video: file
+        video: file,
       }));
     }
   };
@@ -33,30 +34,36 @@ const CreateFood = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!foodData.video) {
-      alert('Please select a video file');
+      toast.error("Please select a video of your food!");
       return;
     }
 
     setUploading(true);
     try {
       const formData = new FormData();
-      formData.append('video', foodData.video);
-      formData.append('name', foodData.name);
-      formData.append('description', foodData.description);
+      formData.append("video", foodData.video);
+      formData.append("name", foodData.name);
+      formData.append("description", foodData.description);
 
-      await axios.post('http://localhost:3000/api/food', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+      const { data } = await axios.post(
+        "http://localhost:3000/api/food",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
         },
-        withCredentials: true
-      });
+      );
 
-      alert('Food video uploaded successfully!');
-      setFoodData({ name: '', description: '', video: null });
-      navigate('/');
+      if (data.food) {
+        toast.success(data.message || "Food video uploaded successfully!");
+      }
+      setFoodData({ name: "", description: "", video: null });
+      navigate("/");
     } catch (error) {
-      console.error('Error uploading food video:', error);
-      alert('Error uploading video. Please try again.');
+      toast.error(error.message);
+      console.error("Error uploading food video:", error);
     } finally {
       setUploading(false);
     }
@@ -79,7 +86,7 @@ const CreateFood = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label className="form-label">Description</label>
             <textarea
@@ -92,37 +99,30 @@ const CreateFood = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label className="form-label">Video File</label>
             <input
               type="file"
-              className="form-input"
+              className="video-upload"
               accept="video/*"
               onChange={handleVideoChange}
               required
             />
             {foodData.video && (
-              <p className="file-info">
-                Selected: {foodData.video.name}
-              </p>
+              <p className="file-info">Selected: {foodData.video.name}</p>
             )}
           </div>
-          
-          <button 
-            type="submit" 
-            className="auth-button"
-            disabled={uploading}
-          >
-            {uploading ? 'Processing video this may take few minutes.....' : 'Upload Food Video'}
+
+          <button type="submit" className="auth-button" disabled={uploading}>
+            {uploading
+              ? "Processing video this may take few minutes....."
+              : "Upload Food Video"}
           </button>
         </form>
-        
+
         <div className="auth-link">
-          <button 
-            onClick={() => navigate('/')}
-            className="back-btn"
-          >
+          <button onClick={() => navigate("/")} className="back-btn">
             Back to Feed
           </button>
         </div>

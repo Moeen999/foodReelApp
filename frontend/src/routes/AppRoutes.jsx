@@ -8,17 +8,20 @@ import CreateFood from "../pages/food-partener/CreateFood";
 import FoodPartnerProfile from "../pages/food-partener/Profile";
 import Navbar from "../components/Navbar";
 import useAuth from "../context/useAuth";
+import { Toaster } from "react-hot-toast";
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { auth } = useAuth();
   if (!auth) return <Navigate to="/user/login" />;
-  if (allowedRoles && !allowedRoles.includes(auth.role)) return <Navigate to="/" />;
+  if (allowedRoles && !allowedRoles.includes(auth.role))
+    return <Navigate to="/" />;
   return children;
 }
 
 const AppRoutes = () => {
   return (
     <>
+      <Toaster position="bottom-right"/>
       <Navbar />
       <Routes>
         <Route path="/user/register" element={<UserRegister />} />
@@ -47,7 +50,7 @@ const AppRoutes = () => {
         <Route
           path="/foodpartener/:id"
           element={
-            <ProtectedRoute allowedRoles={["user","partner"]}>
+            <ProtectedRoute allowedRoles={["user", "partner"]}>
               <FoodPartnerProfile />
             </ProtectedRoute>
           }

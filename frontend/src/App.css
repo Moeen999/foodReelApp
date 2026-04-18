@@ -1,10 +1,14 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-html::selection{
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+html::selection {
   background-color: var(--primary-color);
   color: white;
 }
