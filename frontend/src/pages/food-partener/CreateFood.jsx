@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/auth.css";
+import  { Loader2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
 const CreateFood = () => {
@@ -116,7 +117,7 @@ const CreateFood = () => {
 
           <button type="submit" className="auth-button" disabled={uploading}>
             {uploading
-              ? "Processing video this may take few minutes....."
+            ? <><Loader2Icon className="loader-icon" /> Uploading video, this may take few minutes...</>
               : "Upload Food Video"}
           </button>
         </form>
