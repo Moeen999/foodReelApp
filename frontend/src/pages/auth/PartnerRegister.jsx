@@ -27,7 +27,7 @@ const PartnerRegister = () => {
     } = registerValues;
     e.preventDefault();
     const response = await axios.post(
-      `${import.meta.env.VITE_SERVER_URL}/api/auth/foodpartener/register`,  
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/foodpartener/register`,
       {
         bussinessname,
         contactname,
@@ -38,7 +38,7 @@ const PartnerRegister = () => {
       },
       {
         withCredentials: true,
-      }
+      },
     );
 
     setRegisterValues({
@@ -66,6 +66,7 @@ const PartnerRegister = () => {
             <div className="form-group">
               <label className="form-label">Business Name</label>
               <input
+                required={true}
                 type="text"
                 className="form-input"
                 placeholder="Enter your business name"
@@ -82,6 +83,7 @@ const PartnerRegister = () => {
             <div className="form-group">
               <label className="form-label">Contact Name</label>
               <input
+                required={true}
                 type="text"
                 className="form-input"
                 placeholder="Enter your contact name"
@@ -98,6 +100,7 @@ const PartnerRegister = () => {
             <div className="form-group">
               <label className="form-label">Phone</label>
               <input
+                required={true}
                 type="tel"
                 className="form-input"
                 placeholder="Enter business phone number"
@@ -115,6 +118,7 @@ const PartnerRegister = () => {
               <div className="form-group">
                 <label className="form-label">Business Email</label>
                 <input
+                  required={true}
                   type="email"
                   className="form-input"
                   placeholder="Enter your business email"
@@ -131,6 +135,7 @@ const PartnerRegister = () => {
               <div className="form-group">
                 <label className="form-label">Password</label>
                 <input
+                  required={true}
                   type="password"
                   className="form-input"
                   placeholder="Create a password"
@@ -148,6 +153,7 @@ const PartnerRegister = () => {
             <div className="form-group">
               <label className="form-label">Address</label>
               <input
+                required={true}
                 type="text"
                 className="form-input"
                 placeholder="123 st. city Pakistan"

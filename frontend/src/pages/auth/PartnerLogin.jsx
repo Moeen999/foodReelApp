@@ -45,6 +45,7 @@ const PartnerLogin = () => {
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
+            required={true}
               type="email"
               className="form-input"
               placeholder="Enter your business email"
@@ -61,6 +62,7 @@ const PartnerLogin = () => {
           <div className="form-group">
             <label className="form-label">Password</label>
             <input
+            required={true}
               type="password"
               className="form-input"
               placeholder="Enter your password"
