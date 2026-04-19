@@ -45,6 +45,7 @@ const UserRegister = () => {
           <div className="form-group">
             <label className="form-label">First Name</label>
             <input
+              required={true}
               type="text"
               className="form-input"
               placeholder="Enter your first name"
@@ -61,6 +62,7 @@ const UserRegister = () => {
           <div className="form-group">
             <label className="form-label">Last Name</label>
             <input
+              required={true}
               type="text"
               className="form-input"
               placeholder="Enter your last name"
@@ -77,6 +79,7 @@ const UserRegister = () => {
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
+              required={true}
               type="email"
               className="form-input"
               placeholder="Enter your email"
@@ -93,6 +96,7 @@ const UserRegister = () => {
           <div className="form-group">
             <label className="form-label">Password</label>
             <input
+              required={true}
               type="password"
               className="form-input"
               placeholder="Create a password"

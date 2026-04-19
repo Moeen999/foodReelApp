@@ -83,7 +83,7 @@ const CreateFood = () => {
               name="name"
               value={foodData.name}
               onChange={handleInputChange}
-              required
+              required={true}
             />
           </div>
 
@@ -96,7 +96,7 @@ const CreateFood = () => {
               value={foodData.description}
               onChange={handleInputChange}
               rows="4"
-              required
+              required={true}
             />
           </div>
 
@@ -107,7 +107,7 @@ const CreateFood = () => {
               className="video-upload"
               accept="video/*"
               onChange={handleVideoChange}
-              required
+              required={true}
             />
             {foodData.video && (
               <p className="file-info">Selected: {foodData.video.name}</p>
