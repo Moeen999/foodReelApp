@@ -85,10 +85,14 @@ const FoodPartnerProfile = () => {
 
       <div className="partner-header">
         <h2 className="partner-name">
-          {partner.contactname || "Unknown Partner"}
+          <span>Contact Name:</span> {partner.contactname || "Unknown Partner"}
         </h2>
         <p className="partner-address">
-          {partner.address || "Address not available"}
+          <span>Address:</span> {partner.address || "Address not available"}
+        </p>
+
+        <p className="partner-phone" onClick={() => window.open(`tel:${partner.phone}`)}>
+          <span>Phone: {partner.phone}</span>
         </p>
 
         <div className="partner-stats">

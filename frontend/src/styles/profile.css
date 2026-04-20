@@ -61,6 +61,18 @@
   margin-bottom: 10px;
 }
 
+.partner-phone {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.partner-phone:hover {
+  color: #ff7a00;
+  text-decoration: underline;
+}
+
 .partner-stats {
   display: flex;
   justify-content: center;
