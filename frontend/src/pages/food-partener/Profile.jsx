@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/profile.css";
 import { ArrowLeft, Loader2Icon, Trash2Icon } from "lucide-react";
 import { toast } from "react-hot-toast";
+import AuthContext from "../../context/AuthContextObject";
 
 const FoodPartnerProfile = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const FoodPartnerProfile = () => {
   const [loading, setLoading] = useState(true);
   const [selectedVideoToDelete, setSelectedVideoToDelete] = useState(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-
+  const { auth } = useContext(AuthContext);
   useEffect(() => {
     const fetchPartnerData = async () => {
       try {
@@ -91,7 +92,10 @@ const FoodPartnerProfile = () => {
           <span>Address:</span> {partner.address || "Address not available"}
         </p>
 
-        <p className="partner-phone" onClick={() => window.open(`tel:${partner.phone}`)}>
+        <p
+          className="partner-phone"
+          onClick={() => window.open(`tel:${partner.phone}`)}
+        >
           <span>Phone: {partner.phone}</span>
         </p>
 
@@ -113,10 +117,12 @@ const FoodPartnerProfile = () => {
           <div className="video-grid">
             {videos?.map((item) => (
               <div key={item._id} className="video-card">
-                <Trash2Icon
-                  onClick={() => openConfirmModal(item)}
-                  className="trashIcon"
-                />
+                {auth?.user?.role === "foodpartner" && (
+                  <Trash2Icon
+                    onClick={() => openConfirmModal(item)}
+                    className="trashIcon"
+                  />
+                )}
                 <video
                   src={item.video}
                   loop
