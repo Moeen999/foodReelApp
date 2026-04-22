@@ -50,26 +50,45 @@
 }
 
 .partner-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   font-size: 1.8rem;
   margin-bottom: 4px;
   color: #ddd;
 }
 
 .partner-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   color: #777;
   font-size: 0.95rem;
   margin-bottom: 10px;
 }
 
 .partner-phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   color: #777;
   font-size: 0.95rem;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
+.phone-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
 .partner-phone:hover {
-  color: #ff7a00;
+  /* color: #ff7a00; */
   text-decoration: underline;
 }
 

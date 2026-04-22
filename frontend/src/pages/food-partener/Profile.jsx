@@ -1,8 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/profile.css";
-import { ArrowLeft, Loader2Icon, Trash2Icon } from "lucide-react";
+import {
+  ArrowLeft,
+  Contact,
+  Loader2Icon,
+  Map,
+  MapPin,
+  Phone,
+  Trash2Icon,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import AuthContext from "../../context/AuthContextObject";
 
@@ -86,17 +95,55 @@ const FoodPartnerProfile = () => {
 
       <div className="partner-header">
         <h2 className="partner-name">
-          <span>Contact Name:</span> {partner.contactname || "Unknown Partner"}
+          <Contact size={20} color="#FF665B" /> Name:{" "}
+          {partner.contactname || "Unknown Partner"}
         </h2>
         <p className="partner-address">
-          <span>Address:</span> {partner.address || "Address not available"}
+          <MapPin size={20} color="#FF665B" /> Address:{" "}
+          {partner.address || "Address not available"}
         </p>
 
         <p
           className="partner-phone"
           onClick={() => window.open(`tel:${partner.phone}`)}
         >
-          <span>Phone: {partner.phone}</span>
+          <div className="phone-container">
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <Phone size={20} color="#FF665B" />
+              Phone: {partner.phone}
+            </span>
+
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FaWhatsapp
+                size={20}
+                color="#FF665B"
+                style={{ marginLeft: "8px" }}
+              />
+              WhatsApp:{" "}
+              <Link
+                to={`https://wa.me/${partner.phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FF665B]"
+              >
+                <span style={{ color: "#777" }}>{partner.phone}</span>
+              </Link>
+            </span>
+          </div>
         </p>
 
         <div className="partner-stats">
@@ -117,7 +164,7 @@ const FoodPartnerProfile = () => {
           <div className="video-grid">
             {videos?.map((item) => (
               <div key={item._id} className="video-card">
-                {auth?.user?.role === "foodpartner" && (
+                {auth.role === "partner" && (
                   <Trash2Icon
                     onClick={() => openConfirmModal(item)}
                     className="trashIcon"
