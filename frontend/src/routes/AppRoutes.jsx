@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import UserRegister from "../pages/auth/UserRegister";
 import UserLogin from "../pages/auth/UserLogin";
 import PartnerLogin from "../pages/auth/PartnerLogin";
@@ -18,16 +18,51 @@ function ProtectedRoute({ children, allowedRoles }) {
   return children;
 }
 
+function PublicRoute({ children }) {
+  const { auth } = useAuth();
+  const location = useLocation();
+  if (auth) return <Navigate to="/" replace />;
+  return children;
+}
+
 const AppRoutes = () => {
   return (
     <>
-      <Toaster position="bottom-right"/>
+      <Toaster position="bottom-right" />
       <Navbar />
       <Routes>
-        <Route path="/user/register" element={<UserRegister />} />
-        <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/foodpartener/login" element={<PartnerLogin />} />
-        <Route path="/foodpartener/register" element={<PartnerRegister />} />
+        <Route
+          path="/user/register"
+          element={
+            <PublicRoute>
+              <UserRegister />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/user/login"
+          element={
+            <PublicRoute>
+              <UserLogin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/foodpartener/login"
+          element={
+            <PublicRoute>
+              <PartnerLogin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/foodpartener/register"
+          element={
+            <PublicRoute>
+              <PartnerRegister />
+            </PublicRoute>
+          }
+        />
 
         <Route
           path="/"
