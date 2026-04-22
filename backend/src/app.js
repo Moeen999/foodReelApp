@@ -5,8 +5,10 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("../src/routes/auth.routes.js");
 const foodRoutes = require("../src/routes/food.routes.js");
 const foodPartenerroutes = require("../src/routes/foodpartener.routes.js")
+const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
