@@ -85,7 +85,15 @@ const FoodPartnerProfile = () => {
         <Loader2Icon size={32} color="#FF685C" />
       </div>
     );
-  if (!partner) return <div className="partner-error">Partner not found.</div>;
+  if (!partner)
+    return (
+      <div className="partner-error">
+        <Link to="/" className="go-back-link">
+          <ArrowLeft /> Go Back
+        </Link>
+        <h3>Partner not found.</h3>
+      </div>
+    );
 
   return (
     <div className="partner-profile-container">
