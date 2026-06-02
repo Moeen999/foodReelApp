@@ -31,6 +31,7 @@ const AppRoutes = () => {
       <Toaster position="bottom-right" />
       <Navbar />
       <Routes>
+        <Route path="*" element={<Navigate to="/user/login" replace />} />
         <Route
           path="/user/register"
           element={
