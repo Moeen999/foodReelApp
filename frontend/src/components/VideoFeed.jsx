@@ -148,11 +148,11 @@ const VideoFeed = () => {
                 </p>
               </div>
 
-              <button className="visit-store-btn">
                 <NavLink to={"/foodpartener/" + item?.foodPartener}>
+              <button className="visit-store-btn">
                   Visit Store
-                </NavLink>
               </button>
+                </NavLink>
             </div>
           </div>
 

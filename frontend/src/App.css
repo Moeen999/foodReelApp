@@ -11,4 +11,5 @@ body {
 html::selection {
   background-color: var(--primary-color);
   color: white;
+  overflow-y: auto;
 }
