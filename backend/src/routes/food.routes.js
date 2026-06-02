@@ -8,7 +8,7 @@ const multer = require("multer");
 const uploadFile = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 500 * 1024 * 1024, // 500MB max
+    fileSize: 50 * 1024 * 1024, // 50MB max
   },
   fileFilter: (req, file, cb) => {
     const allowedMimes = [
@@ -38,7 +38,7 @@ const handleMulterError = (err, req, res, next) => {
     if (err.code === "FILE_TOO_LARGE") {
       return res.status(400).json({
         success: false,
-        message: "Video file is too large (max 500MB)",
+        message: "Video file is too large (max 50MB)",
       });
     }
     if (err.code === "LIMIT_FILE_COUNT") {
